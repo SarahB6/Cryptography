@@ -95,18 +95,25 @@ namespace CryptographyChap3Assignment
             return realPossible.ToArray();
         } 
 
+        public static string doubleEncryption(string input, int key, int key2)
+        {
+            string encrypted = Encrypt(input, key);
+            return Encrypt(encrypted, key2);
+        }
 
         static void Main(string[] args)
         {
 
             string input = "chicken";
             int key = 4;
+            int key2 = 2;
             string encrypted = Encrypt(input, key);
             string decrypted = Decrypt(encrypted, key);
+            string doubleEncrypt = doubleEncryption(input, key, key2);
             Console.WriteLine(input);
             Console.WriteLine(encrypted);
             Console.WriteLine(decrypted);
-
+            Console.WriteLine(doubleEncrypt);
             string[] returned = allPossibleMessages(encrypted);
             for (int i = 0; i < returned.Length; i++)
             {
