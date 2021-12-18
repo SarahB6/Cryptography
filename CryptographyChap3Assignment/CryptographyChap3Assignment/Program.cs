@@ -20,7 +20,7 @@ namespace CryptographyChap3Assignment
                 }
                 else
                 {
-                   offset = num % 26 + 97;
+                    offset = num % 26 + 97;
                 }
                 encrypted += (char)offset;
             }
@@ -35,13 +35,13 @@ namespace CryptographyChap3Assignment
         public static string[] allPossibleMessages(string input)
         {
             string[] toReturn = new string[26];
-            for (int i = 0; i<toReturn.Length; i++)
+            for (int i = 0; i < toReturn.Length; i++)
             {
                 toReturn[i] = Decrypt(input, i);
             }
             return toReturn;
         }
-        
+
         public static string inputPhonetic(string inputNormal)
         {
             string input = inputNormal.ToLower();
@@ -51,7 +51,7 @@ namespace CryptographyChap3Assignment
 
             Dictionary<char, int> charMap = new Dictionary<char, int>();
 
-            for (int i = 0; i<input.Length; i++)
+            for (int i = 0; i < input.Length; i++)
             {
                 if (!charMap.ContainsKey(input[i]))
                 {
@@ -60,7 +60,7 @@ namespace CryptographyChap3Assignment
                 }
             }
 
-            for (int i = 0; i<input.Length; i++)
+            for (int i = 0; i < input.Length; i++)
             {
                 int value = charMap[input[i]];
                 toReturn.Append($".{value}");
@@ -74,7 +74,7 @@ namespace CryptographyChap3Assignment
             string inputMap = inputPhonetic(input);
             List<string> possibles = new List<string>();
             List<string> realPossible = new List<string>();
-            for (int i = 0; i<words.Count;i++)
+            for (int i = 0; i < words.Count; i++)
             {
                 string wordMap = inputPhonetic(words[i]);
                 if (inputMap.Equals(wordMap))
@@ -82,7 +82,7 @@ namespace CryptographyChap3Assignment
                     possibles.Add(words[i]);
                 }
             }
-            for (int i = 0; i<26; i++)
+            for (int i = 0; i < 26; i++)
             {
                 for (int a = 0; a < possibles.Count; a++)
                 {
@@ -93,7 +93,7 @@ namespace CryptographyChap3Assignment
                 }
             }
             return realPossible.ToArray();
-        } 
+        }
 
         public static string doubleEncryption(string input, int key, int key2)
         {
@@ -120,7 +120,7 @@ namespace CryptographyChap3Assignment
                 Console.WriteLine(returned[i]);
             }
             string[] returnedPossibles = SmartCracker(encrypted);
-            for (int i = 0; i<returnedPossibles.Length; i++)
+            for (int i = 0; i < returnedPossibles.Length; i++)
             {
                 Console.WriteLine(returnedPossibles[i]);
             }
