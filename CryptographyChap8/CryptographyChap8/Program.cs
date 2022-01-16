@@ -27,7 +27,7 @@ namespace CryptographyChap8
             string toReturn = "";
             for(int i = 0; i<message.Length;i++)
             {
-                int index = (char)message[i] - 32;
+                int index = (char)message[i]-32;
                 toReturn += key[index];
             }
             return toReturn;
@@ -42,8 +42,8 @@ namespace CryptographyChap8
                 int value = 0;
                 for (int a = 0; a<key.Length; a++)
                 {
-                    value = key[a] + 32; //setting value equal to whatever a is encrypted to
-                    if (value == currentChar) // checking if a (the encrypted for every charcter) is equal to current char (the current akii value)
+                    //value = key[a]; //setting value equal to whatever a is encrypted to
+                    if (key[a] == currentChar) // checking if a (the encrypted for every charcter) is equal to current char (the current akii value)
                     {
                         toReturn += (char)(a+32); // adding the original value(+32 since it should go to the first on the askii) to the return statement
                     }
@@ -53,7 +53,7 @@ namespace CryptographyChap8
         }
         static void Main(string[] args)
         {
-            string message = "a";
+            string message = "testing";
             char[] key = makeKey();
             string encrypted = encrypt(message, key);
             string decrypted = decrypt(encrypted, key);
