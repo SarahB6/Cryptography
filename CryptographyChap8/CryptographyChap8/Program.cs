@@ -15,8 +15,9 @@ namespace CryptographyChap8
             {
                 do
                 {
-                    random = rand.Next(32, 96);
+                    random = rand.Next(32, 127);
                 } while (randomList.Contains(random));
+                randomList.Add(random);
                toReturn[i] = (char)random;
             }
             return toReturn;
@@ -31,20 +32,28 @@ namespace CryptographyChap8
             }
             return toReturn;
         }
-        // 
+        
         public static string decrypt(string encrypted, char[] key)
         {
             string toReturn = "";
             for (int i = 0; i < encrypted.Length; i++)
             {
-                int currentChar = encrypted[i] - 32;
-                toReturn += key[currentChar];
+                int currentChar = encrypted[i]; // gets askii value of char
+                int value = 0;
+                for (int a = 0; a<key.Length; a++)
+                {
+                    value = key[a] + 32; //setting value equal to whatever a is encrypted to
+                    if (value == currentChar) // checking if a (the encrypted for every charcter) is equal to current char (the current akii value)
+                    {
+                        toReturn += (char)(a+32); // adding the original value(+32 since it should go to the first on the askii) to the return statement
+                    }
+                }
             }
             return toReturn;
         }
         static void Main(string[] args)
         {
-            string message = "test";
+            string message = "a";
             char[] key = makeKey();
             string encrypted = encrypt(message, key);
             string decrypted = decrypt(encrypted, key);
